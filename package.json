@@ -1,0 +1,28 @@
+{
+  "name": "elpepe-mean-blog",
+  "version": "0.0.0",
+  "description": "MEAN blog for showcase/porftolio purpose.",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ElPepe101/elpepe-mean-blog.git"
+  },
+  "keywords": [
+    "mean",
+    "mongodb",
+    "angularjs",
+    "expressjs",
+    "nodejs",
+    "elpepe",
+    "blog"
+  ],
+  "author": "Antonio 'ElPepe' Segoviano <aunsoyjoven {at} hotmail>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ElPepe101/elpepe-mean-blog/issues"
+  },
+  "homepage": "https://github.com/ElPepe101/elpepe-mean-blog#readme"
+}
