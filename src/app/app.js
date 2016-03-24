@@ -1,14 +1,25 @@
 'use strict'
 
+// Assets
 import '../assets/css/main.css'
 
+// App
 var app = window.angular.module('app', ['ui.router'])
 
-import router from 'app.router.js'
+// Directives
+import greeting from 'greeting.directive'
+import metadata from 'metadata.directive'
+app.directive('greeting', greeting)
+app.directive('metadata', metadata)
+
+// Config
+import router from 'app.router'
 app.config(router)
 
-import Home from 'Home.controller.js'
-app.controller('Home', Home)
+// Services
+import RandomNames from 'RandomNames.service'
+app.service('RandomNames', RandomNames)
 
-import greeting from 'greeting.directive.js'
-app.directive('greeting', greeting)
+// Controllers
+import HomeController from 'HomeController.controller'
+app.controller('HomeController', HomeController)

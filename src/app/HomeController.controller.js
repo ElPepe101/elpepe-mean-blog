@@ -1,8 +1,6 @@
 'use strict'
 
-import RandomNames from 'randomNames.service.js'
-
-export default class Home {
+export default class HomeController {
   constructor (RandomNames) {
     this.random = RandomNames
     this.name = 'World'
@@ -17,4 +15,4 @@ export default class Home {
   }
 }
 
-Home.$inject = ['RandomNames']
+HomeController.$inject = ['RandomNames']

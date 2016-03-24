@@ -1,7 +1,5 @@
 'use strict'
 
-var app = require('config')
-
 /**
  * Add defined meta tags to the HTML head,
  * the app must be on HTML scope.
@@ -12,7 +10,7 @@ var app = require('config')
  * @param  {Object} $rootScope Angular Router scope injection
  * @return {Object}
  */
-var metadata = function ($rootScope) {
+export default function metadata ($rootScope) {
   // Directive link function
   var link = function (scope, elem, attr) {
     // Event: route changed
@@ -30,13 +28,12 @@ var metadata = function ($rootScope) {
     restrict: 'A',
     template: '<meta property="{{ meta.property }}" content="{{ meta.content }}" ng-repeat="meta in metas" />',
     replace: true,
-    scope:
-      {
-        // https://docs.angularjs.org/error/$compile/nonassign
-        metas: '@?meta'
-      },
+    scope: {
+      // https://docs.angularjs.org/error/$compile/nonassign
+      metas: '@?meta'
+    },
     link: link
   }
 }
-// Register angular directive
-app.directive('metadata', ['$rootScope', metadata])
+
+metadata.$inject = ['$rootScope']
