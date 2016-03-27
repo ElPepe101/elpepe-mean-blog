@@ -1,7 +1,7 @@
-/* eslint-env jasmine */
+/* eslint-env mocha */
 
 // import app from './app'
-
+import {expect} from 'chai'
 import HomeController from 'HomeController.controller'
 import RandomNames from 'RandomNames.service'
 
@@ -13,17 +13,17 @@ describe('Home controller', function () {
   })
 
   it('should start with the name "World"', function () {
-    expect(home.name).toEqual('World')
+    expect(home.name).to.equal('World')
   })
 
   it('should change value to "angular-tips" on changeName', function () {
     home.changeName()
-    expect(home.name).toEqual('angular-tips')
+    expect(home.name).to.equal('angular-tips')
   })
 
   it('should change value to one in [John, Elisa, Mark, Annie] on randomName', function () {
     home.randomName()
     console.log(home.name)
-    expect(home.name).toMatch(/\bJohn\b|\bElisa\b|\bMark\b|\bAnnie\b/)
+    expect(home.name).to.match(/\bJohn\b|\bElisa\b|\bMark\b|\bAnnie\b/)
   })
 })
