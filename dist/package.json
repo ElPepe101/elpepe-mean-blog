@@ -4,7 +4,6 @@
   "main": "app.js",
   "version": "0.0.0",
   "scripts": {
-    "test": "test",
     "start": "node ./bin/www"
   },
   "repository": {

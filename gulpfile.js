@@ -4,28 +4,6 @@ var browserSync = require('browser-sync').create()
 var nodemon = require('gulp-nodemon')
 var webpack = require('webpack-stream')
 
-// ····················· TEST ··························
-var test = function () {
-  return
-
-  var karma = karma({
-    configFile: 'karma.conf.js',
-    action: 'run'
-  })
-
-  var error = function (err) {
-    // Make sure failed tests cause gulp to exit non-zero
-    console.log(err)
-    this.emit('end') // instead of erroring the stream, end it
-  }
-
-  return gulp
-    .src('./test')
-    .pipe(karma)
-    .on('error', error)
-}
-gulp.task('test', test)
-
 // ····················· WATCH ··························
 var watch = function () {
   return gulp
@@ -35,7 +13,7 @@ var watch = function () {
       '!dist/public/**/*',
       'src/**/*.{js,html,css,png,jpg,jpeg,gif,mp3,mp4}',
       '!src/node_modules/*'
-    ], ['refresh'])
+    ], ['pack'])
 }
 gulp.task('watch', watch)
 
@@ -46,14 +24,6 @@ var pack = function () {
     .pipe(gulp.dest('dist/public/'))
 }
 gulp.task('pack', pack)
-
-// ····················· REFRESH ··························
-var refresh = function () {
-  runSequence(
-    'pack' //, 'test'
-  )
-}
-gulp.task('refresh', refresh)
 
 // ····················· SERVE ··························
 var serve = function (cb) {
@@ -67,8 +37,7 @@ var serve = function (cb) {
         'gulpfile.js',
         'node_modules',
         'dist/node_modules',
-        'src',
-        'test'
+        'src'
       ]
     })
     .on('start', function () {
@@ -92,5 +61,5 @@ gulp.task('serve', serve)
 
 // ····················· DEFAULT ··························
 gulp.task('default', function () {
-  runSequence('pack', 'serve', 'watch', 'test')
+  runSequence('pack', 'serve', 'watch')
 })

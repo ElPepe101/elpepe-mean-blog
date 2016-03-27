@@ -1,0 +1,1 @@
+{"version":3,"sources":["webpack:///webpack:///src/assets/css/main.css"],"names":[],"mappings":"AAAA,QACE,UAAa","file":"main.css","sourcesContent":[".nclass {\n  color: black;\n}\n\n\n\n/** WEBPACK FOOTER **\n ** webpack:///src/assets/css/main.css\n **/"],"sourceRoot":""}
