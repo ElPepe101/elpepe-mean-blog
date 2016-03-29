@@ -4,6 +4,9 @@ node_modules/
 # Bower
 bower_components/
 
+# Tests
+reports/
+
 # Git
 .git
 
@@ -21,4 +24,5 @@ composer.lock
 # Other
 .tmp/
 build/
+dist/
 .initialize

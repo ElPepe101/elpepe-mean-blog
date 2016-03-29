@@ -125,7 +125,8 @@ config.plugins = [
     // browse to http://localhost:7000/ during development,
     // Proxy Express server
     proxy: 'localhost:' + (process.env.PORT || 3000),
-    port: 7000
+    port: 7000,
+    reloadDelay: 1000 // https://github.com/BrowserSync/browser-sync/issues/392
   })
 ]
 

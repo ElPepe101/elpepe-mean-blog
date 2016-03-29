@@ -3,8 +3,8 @@
 // ··············································
 // ············· AUTH CONTROLLER ················
 export default class AuthController {
-  constructor ($state, Auth) {
-    this.Auth = Auth
+  constructor ($state, AuthService) {
+    this.AuthService = AuthService
     this.$state = $state
   }
 
@@ -17,7 +17,7 @@ export default class AuthController {
       this.$state.go('home')
     }.bind(this)
 
-    this.Auth.register(this.user).error(error).then(then)
+    this.AuthService.register(this.user).error(error).then(then)
   }
 
   logIn () {
@@ -29,8 +29,8 @@ export default class AuthController {
       this.$state.go('home')
     }.bind(this)
 
-    this.Auth.logIn(this.user).error(error).then(then)
+    this.AuthService.logIn(this.user).error(error).then(then)
   }
 }
 
-AuthController.$inject = ['$state', 'Auth']
+AuthController.$inject = ['$state', 'AuthService']

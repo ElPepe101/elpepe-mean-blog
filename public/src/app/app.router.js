@@ -21,9 +21,9 @@ export default function router ($stateProvider, $urlRouterProvider) {
       controllerAs: 'auth',
       onEnter: [
         '$state',
-        'Auth',
-        function ($state, Auth) {
-          if (Auth.isLoggedIn()) {
+        'AuthService',
+        function ($state, AuthService) {
+          if (AuthService.isLoggedIn()) {
             $state.go('home')
           }
         }
@@ -36,9 +36,9 @@ export default function router ($stateProvider, $urlRouterProvider) {
       controllerAs: 'auth',
       onEnter: [
         '$state',
-        'Auth',
-        function ($state, Auth) {
-          if (Auth.isLoggedIn()) {
+        'AuthService',
+        function ($state, AuthService) {
+          if (AuthService.isLoggedIn()) {
             $state.go('home')
           }
         }
