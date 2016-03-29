@@ -5,7 +5,7 @@
 var loaders = require('./webpack.loaders')
 loaders.css.loader = 'style-loader'
 
-var webpack = require('./webpack.conf')
+var webpack = require('./webpack.config')
 // webpack.devtool = 'inline-source-map'
 webpack.devtool = ''
 webpack.entry = {}

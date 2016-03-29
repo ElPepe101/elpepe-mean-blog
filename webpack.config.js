@@ -7,6 +7,7 @@ var loaders = require('./webpack.loaders')
 var autoprefixer = require('autoprefixer')
 // var CompressionPlugin = require('compression-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
+var BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 
 /**
  * Config
@@ -118,7 +119,14 @@ config.plugins = [
 
   // Reference: https://github.com/webpack/extract-text-webpack-plugin
   // Extract css files
-  new ExtractTextPlugin('main.css')
+  new ExtractTextPlugin('main.css'),
+
+  new BrowserSyncPlugin({
+    // browse to http://localhost:7000/ during development,
+    // Proxy Express server
+    proxy: 'localhost:' + (process.env.PORT || 3000),
+    port: 7000
+  })
 ]
 
 config.resolve = {

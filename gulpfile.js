@@ -9,11 +9,10 @@ var notifier = require('node-notifier')
 var watch = function () {
   return gulp
     .watch([
-      'dist/**/*.{js,ejs}',
-      '!dist/node_modules/*',
-      '!dist/public/**/*',
-      'src/**/*.{js,html,css,png,jpg,jpeg,gif,mp3,mp4}',
-      '!src/node_modules/*'
+      // 'views/**/*.{js,ejs}',
+      '!node_modules',
+      '!public/**/*',
+      'public/src/**/*.{js,html,css,png,jpg,jpeg,gif,mp3,mp4}'
     ], ['pack'])
 }
 gulp.task('watch', watch)
@@ -33,13 +32,12 @@ var serve = function (cb) {
 
   return nodemon(
     {
-      script: 'dist/bin/www',
+      script: 'bin/www',
       ignore: [
-        '*conf.js',
+        '*config.js',
         'gulpfile.js',
         'node_modules',
-        'dist/node_modules',
-        'src'
+        'public/src'
       ]
     })
     .on('start', function () {
