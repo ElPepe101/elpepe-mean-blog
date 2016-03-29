@@ -4,6 +4,7 @@
   "main": "app.js",
   "version": "0.0.0",
   "scripts": {
+    "start": "node ./bin/www",
     "test": "karma test"
   },
   "repository": {
@@ -75,6 +76,20 @@
   },
   "dependencies": {
     "angular": "^1.5.2",
-    "angular-ui-router": "^0.2.18"
+    "angular-ui-router": "^0.2.18",
+    "body-parser": "~1.13.2",
+    "debug": "~2.2.0",
+    "ejs": "~2.3.3",
+    "express": "~4.13.1",
+    "express-jwt": "^3.3.0",
+    "jsonwebtoken": "^5.7.0",
+    "mongodb": "^2.1.10",
+    "mongoose": "^4.4.10",
+    "morgan": "~1.6.1",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "serve-favicon": "~2.3.0",
+    "socket.io": "^1.4.5",
+    "socket.io-client": "^1.4.5"
   }
 }

@@ -40,7 +40,7 @@ module.exports = function (config) {
 
     files: [
       // Grab all files in the app folder that contain .spec.
-      'src/tests.webpack.js'
+      'tests.webpack.js'
     ],
 
     // preprocess matching files before serving them to the browser
@@ -49,7 +49,7 @@ module.exports = function (config) {
       // Reference: http://webpack.github.io/docs/testing.html
       // Reference: https://github.com/webpack/karma-webpack
       // Convert files with webpack and load sourcemaps
-      'src/tests.webpack.js': ['webpack']
+      'tests.webpack.js': ['webpack']
     },
 
     // test results reporter to use

@@ -24,7 +24,7 @@ config.cache = true // Somebody is watching
  * Karma will set this when it's a test build
  */
 config.entry = {
-  app: './src/app/app.js'
+  app: './public/src/app/app.js'
 }
 
 /**
@@ -35,7 +35,7 @@ config.entry = {
  */
 config.output = {
   // Absolute output directory
-  path: __dirname + '/dist/public/js',
+  path: __dirname + '/public/js',
 
   // Output path from the view of the page
   // Uses webpack-dev-server in development
@@ -122,7 +122,7 @@ config.plugins = [
 ]
 
 config.resolve = {
-  fallback: [__dirname + '/src/app'],
+  fallback: [__dirname + '/public/src/app'],
   root: ['node_modules']
 }
 
