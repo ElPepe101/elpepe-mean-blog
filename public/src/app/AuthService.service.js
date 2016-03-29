@@ -50,7 +50,11 @@ export default class AuthService {
       this.saveToken(data.token)
     }.bind(this)
 
-    return this.$http.post('/login', user).success(success)
+    var error = function (data) {
+      this.error = data
+    }.bind(this)
+
+    return this.$http.post('/login', user).success(success).error(error)
   }
 
   logOut () {

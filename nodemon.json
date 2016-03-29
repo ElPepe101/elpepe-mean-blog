@@ -1,10 +1,11 @@
 {
   "verbose": true,
   "ignore": [
-    ".git",
-    "*config.js",
-    "node_modules",
-    "public",
-    "public"
+    "./.git",
+    "./*config.js",
+    "./node_modules",
+    "./public",
+    "./reports",
+    "./*webpack*"
   ]
 }

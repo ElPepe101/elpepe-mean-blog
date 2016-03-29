@@ -126,7 +126,7 @@ config.plugins = [
     // Proxy Express server
     proxy: 'localhost:' + (process.env.PORT || 3000),
     port: 7000,
-    reloadDelay: 1000 // https://github.com/BrowserSync/browser-sync/issues/392
+    reloadDelay: 250 // https://github.com/BrowserSync/browser-sync/issues/392
   })
 ]
 

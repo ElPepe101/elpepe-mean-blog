@@ -4,7 +4,7 @@
   "main": "app.js",
   "version": "0.0.0",
   "scripts": {
-    "start": "concurrently --kill-others \"nodemon bin/www\" \"webpack --watch\"",
+    "start": "concurrently --kill-others --raw \"nodemon bin/www\" \"webpack --watch\"",
     "test": "karma start karma.config.js"
   },
   "repository": {
