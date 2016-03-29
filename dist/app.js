@@ -1,3 +1,22 @@
+// ·············································································
+// ······························· DATABASE ····································
+// ·············································································
+var mongoose = require('mongoose')
+require('./models/Posts')
+require('./models/Comments')
+// mongoose.connect('mongodb://localhost/news')
+mongoose.connect('mongodb://' + process.env.DBUSER + ':' + process.env.DBPASS + '@' + process.env.DBCONN + '/' + process.env.DBCOLL)
+
+// ·············································································
+// ······························· PASSPORT ····································
+// ·············································································
+var passport = require('passport')
+require('./models/User')
+require('./config/passport')
+
+// ·············································································
+// ································ SERVER ·····································
+// ·············································································
 var express = require('express')
 var path = require('path')
 // var favicon = require('serve-favicon')
@@ -19,7 +38,7 @@ app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(express.static(path.join(__dirname, 'public')))
-
+app.use(passport.initialize())
 app.use('/', routes)
 app.use('/users', users)
 

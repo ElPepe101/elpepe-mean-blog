@@ -3,6 +3,7 @@ var runSequence = require('run-sequence')
 var browserSync = require('browser-sync').create()
 var nodemon = require('gulp-nodemon')
 var webpack = require('webpack-stream')
+var notifier = require('node-notifier')
 
 // ····················· WATCH ··························
 var watch = function () {
@@ -19,6 +20,7 @@ gulp.task('watch', watch)
 
 // ····················· PACK ··························
 var pack = function () {
+  notifier.notify('Packing')
   return gulp.src('src/app/app.js')
     .pipe(webpack(require('./webpack.conf.js')))
     .pipe(gulp.dest('dist/public/'))
@@ -47,13 +49,14 @@ var serve = function (cb) {
         browserSync.init(null, {
           proxy: 'localhost:' + (process.env.PORT || 3000),
           port: 7000,
-          reloadDelay: 500 // https://github.com/BrowserSync/browser-sync/issues/392
+          reloadDelay: 1000 // https://github.com/BrowserSync/browser-sync/issues/392
         })
         cb()
         started = true
       }
 
       // Manual BrowserSync reload
+      notifier.notify('Reloading browser')
       browserSync.reload()
     })
 }

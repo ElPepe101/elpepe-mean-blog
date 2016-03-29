@@ -5,7 +5,7 @@
 var webpack = require('webpack')
 var loaders = require('./webpack.loaders')
 var autoprefixer = require('autoprefixer')
-var CompressionPlugin = require('compression-webpack-plugin')
+// var CompressionPlugin = require('compression-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 /**
@@ -14,6 +14,8 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
  * This is the object where all configuration gets set
  */
 var config = {}
+
+config.cache = true // Somebody is watching
 
 /**
  * Entry
@@ -45,7 +47,10 @@ config.output = {
 
   // Filename for non-entry points
   // Only adds hash in build mode
-  chunkFilename: 'app.min.js'
+  chunkFilename: 'app.min.js',
+
+  // http://webpack.github.io/docs/build-performance.html
+  pathinfo: true
 }
 
 /**
@@ -53,7 +58,8 @@ config.output = {
  * Reference: http://webpack.github.io/docs/configuration.html#devtool
  * Type of sourcemap to use per build type
  */
-config.devtool = 'source-map'
+// config.devtool = 'source-map'
+config.devtool = 'eval'
 
 /**
  * Loaders
@@ -96,19 +102,19 @@ config.plugins = [
 
   // Reference: http://webpack.github.io/docs/list-of-plugins.html#dedupeplugin
   // Dedupe modules in the output
-  new webpack.optimize.DedupePlugin(),
+  // new webpack.optimize.DedupePlugin(),
 
   // Reference: http://webpack.github.io/docs/list-of-plugins.html#uglifyjsplugin
   // Minify all javascript, switch loaders to minimizing mode
   new webpack.optimize.UglifyJsPlugin(),
 
-  new CompressionPlugin({
+  /* new CompressionPlugin({
     asset: '{file}.gz',
     algorithm: 'gzip',
     test: /\.js$|\.html$/,
     threshold: 10240,
     minRatio: 0.8
-  }),
+  }),*/
 
   // Reference: https://github.com/webpack/extract-text-webpack-plugin
   // Extract css files
@@ -116,7 +122,8 @@ config.plugins = [
 ]
 
 config.resolve = {
-  fallback: [__dirname + '/src/app']
+  fallback: [__dirname + '/src/app'],
+  root: ['node_modules']
 }
 
 module.exports = config

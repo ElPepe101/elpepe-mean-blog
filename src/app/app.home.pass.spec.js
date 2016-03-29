@@ -1,6 +1,5 @@
 /* eslint-env mocha */
 
-// import app from './app'
 import {expect} from 'chai'
 import HomeController from 'HomeController.controller'
 import RandomNames from 'RandomNames.service'

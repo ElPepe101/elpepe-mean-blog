@@ -1,18 +1,32 @@
 'use strict'
 
+// ·············································
+// ············ HOME CONTROLLER ················
 export default class HomeController {
-  constructor (RandomNames) {
-    this.random = RandomNames
+  constructor (PostsService, AuthService) {
     this.name = 'World'
+    this.PostsService = PostsService
+    this.PostsService.getAll()
+    this.posts = this.PostsService.posts
+    this.show = AuthService.isLoggedIn()
   }
 
-  changeName () {
-    this.name = 'angular-tips'
+  addPost () {
+    if (!this.title || this.title === '') return
+
+    this.PostsService.create(
+      {
+        title: this.title,
+        link: this.link
+      }
+    )
+    this.title = ''
+    this.link = ''
   }
 
-  randomName () {
-    this.name = this.random.getName()
+  incrementUpvotes (post) {
+    this.PostsService.upvote(post)
   }
 }
 
-HomeController.$inject = ['RandomNames']
+HomeController.$inject = ['PostsService', 'AuthService']
