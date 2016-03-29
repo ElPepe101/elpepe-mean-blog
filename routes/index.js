@@ -4,28 +4,28 @@ var router = express.Router()
 var jwt = require('express-jwt')
 var auth = jwt({secret: process.env.SECRET, userProperty: 'payload'})
 
-var register = require('./register')
-var login = require('./login')
-var home = require('./home')
-var posts = require('./posts')
+var register = require('./route.register')
+var login = require('./route.login')
+var home = require('./route.home')
+var posts = require('./route.posts')
 
 // REGISTER
-router.post('/register', register.register)
+router.post('/register', register.post.register)
 
 // LOGIN
-router.post('/login', login.login)
+router.post('/login', login.post.login)
 
 // HOME
-router.get('/', home.getHome)
+router.get('/', home.get.home)
 
 // POSTS
-router.param('post', posts.paramPost)
-router.param('comment', posts.paramComment)
-router.get('/posts', posts.getPosts)
-router.get('/posts/:post', posts.getPost)
-router.post('/posts', auth, posts.postPosts)
-router.put('/posts/:post/upvote', auth, posts.putPostUpvote)
-router.post('/posts/:post/comments', auth, posts.postPostComments)
-router.put('/posts/:post/comments/:comment/upvote', auth, posts.putPostCommentUpvote)
+router.param('post', posts.param.post)
+router.param('comment', posts.param.comment)
+router.get('/posts', posts.get.posts)
+router.get('/posts/:post', posts.get.post)
+router.post('/posts', auth, posts.post.posts)
+router.put('/posts/:post/upvote', auth, posts.put.postUpvote)
+router.post('/posts/:post/comments', auth, posts.post.postComments)
+router.put('/posts/:post/comments/:comment/upvote', auth, posts.put.postCommentUpvote)
 
 module.exports = router

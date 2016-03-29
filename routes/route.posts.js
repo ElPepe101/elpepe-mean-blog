@@ -2,10 +2,16 @@ var mongoose = require('mongoose')
 var Post = mongoose.model('Post')
 var Comment = mongoose.model('Comment')
 
-var posts = {}
+var posts = {
+  param: {},
+  post: {},
+  put: {},
+  get: {},
+  delete: {}
+}
 
 // ···································· Params
-posts.paramPost = function (req, res, next, id) {
+posts.param.post = function (req, res, next, id) {
   var query = Post.findById(id)
   var queryExec = function (err, post) {
     if (err) return next(err)
@@ -18,7 +24,7 @@ posts.paramPost = function (req, res, next, id) {
   query.exec(queryExec)
 }
 
-posts.paramComment = function (req, res, next, id) {
+posts.param.comment = function (req, res, next, id) {
   var query = Comment.findById(id)
   var queryExec = function (err, comment) {
     if (err) return next(err)
@@ -33,7 +39,7 @@ posts.paramComment = function (req, res, next, id) {
 
 // ···································· Get Posts
 // curl http://localhost:3000/posts
-posts.getPosts = function (req, res, next) {
+posts.get.posts = function (req, res, next) {
   Post.find(function (err, posts) {
     if (err) return next(err)
 
@@ -43,7 +49,7 @@ posts.getPosts = function (req, res, next) {
 
 // ···································· Get Post
 // curl http://localhost:3000/posts/<POST ID>
-posts.getPost = function (req, res, next) {
+posts.get.post = function (req, res, next) {
   var reqPost = function (err, post) {
     if (err) return next(err)
 
@@ -54,7 +60,7 @@ posts.getPost = function (req, res, next) {
 
 // ···································· Post Posts
 // curl --data 'title=test&link=http://test.com' http://localhost:3000/posts
-posts.postPosts = function (req, res, next) {
+posts.post.posts = function (req, res, next) {
   var post = new Post(req.body)
   post.author = req.payload.username
 
@@ -68,7 +74,7 @@ posts.postPosts = function (req, res, next) {
 
 // ···································· Put Post Upvote
 // curl -X PUT http://localhost:3000/posts/<POST ID>/upvote
-posts.putPostUpvote = function (req, res, next) {
+posts.put.postUpvote = function (req, res, next) {
   var reqPostUpvote = function (err, post) {
     if (err) return next(err)
 
@@ -79,7 +85,7 @@ posts.putPostUpvote = function (req, res, next) {
 
 // ···································· Post Post Comments
 // curl -X PUT http://localhost:3000/posts/<POST ID>/comments
-posts.postPostComments = function (req, res, next) {
+posts.post.postComments = function (req, res, next) {
   var comment = new Comment(req.body)
   comment.post = req.post
   comment.author = req.payload.username
@@ -100,7 +106,7 @@ posts.postPostComments = function (req, res, next) {
 
 // ···································· Put Post Comment Upvote
 // curl -X PUT http://localhost:3000/posts/<POST ID>/comments/<COMMENT ID>/upvote
-posts.putPostCommentUpvote = function (req, res, next) {
+posts.put.postCommentUpvote = function (req, res, next) {
   var reqPostCommentUpvote = function (err, comment) {
     if (err) return next(err)
 

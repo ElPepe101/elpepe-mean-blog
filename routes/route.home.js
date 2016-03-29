@@ -1,7 +1,13 @@
-var home = {}
+var home = {
+  param: {},
+  post: {},
+  put: {},
+  get: {},
+  delete: {}
+}
 
 // ···································· Get HOME TEMPLATE
-home.getHome = function (req, res) {
+home.get.home = function (req, res) {
   res.render('index', { title: 'Express Home' })
 }
 

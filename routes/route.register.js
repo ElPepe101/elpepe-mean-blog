@@ -1,10 +1,16 @@
 var mongoose = require('mongoose')
 var User = mongoose.model('User')
 
-var register = {}
+var register = {
+  param: {},
+  post: {},
+  put: {},
+  get: {},
+  delete: {}
+}
 
 // ···································· Post Register
-register.register = function (req, res, next) {
+register.post.register = function (req, res, next) {
   if (!req.body.username || !req.body.password) return res.status(400).json({message: 'Please fill out all fields.'})
 
   var user = new User()
