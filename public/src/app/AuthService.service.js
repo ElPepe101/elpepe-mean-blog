@@ -2,17 +2,22 @@
 
 export default class AuthService {
   constructor ($http, $q, $window) {
+    if (!$http || !$q || !$window) throw new Error('Dependencies not valid.')
+
     this.$http = $http
     this.$q = $q
     this.$window = $window
+    this.storage = 'elpepe-blog-token'
   }
 
   saveToken (token) {
-    this.$window.localStorage['elpepe-blog-token'] = token
+    if (typeof token !== 'string') throw new Error('Token not a valid string')
+
+    this.$window.localStorage[this.storage] = token
   }
 
   getToken () {
-    return this.$window.localStorage['elpepe-blog-token']
+    return this.$window.localStorage[this.storage]
   }
 
   isLoggedIn () {
@@ -58,7 +63,7 @@ export default class AuthService {
   }
 
   logOut () {
-    this.$window.localStorage.removeItem('elpepe-blog-token')
+    this.$window.localStorage.removeItem(this.storage)
   }
 }
 

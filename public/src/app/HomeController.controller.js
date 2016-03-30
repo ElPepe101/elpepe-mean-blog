@@ -4,7 +4,6 @@
 // ············ HOME CONTROLLER ················
 export default class HomeController {
   constructor (PostsService, AuthService) {
-    this.name = 'World'
     this.PostsService = PostsService
     this.PostsService.getAll()
     this.posts = this.PostsService.posts

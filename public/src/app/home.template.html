@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1>Flapper News</h1>
+  <h1>Home</h1>
 </div>
 
 <div data-ng-repeat="post in home.posts | orderBy: '-upvotes'">
@@ -14,7 +14,7 @@
       {{post.title}}
     </span>
     <span>
-      <a href="#/posts/{{post._id}}">Comments</a>
+      <a href="#/posts/{{post._id}}">More...</a>
     </span>
     <span data-ng-show="post.author">
       posted by <a>{{post.author}}</a> |

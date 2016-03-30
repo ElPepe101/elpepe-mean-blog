@@ -5,6 +5,12 @@ export default class NavController {
     this.currenUser = AuthService.currentUser()
     this.links = [
       {
+        show: true,
+        text: 'Home',
+        href: '/#/',
+        click: null
+      },
+      {
         show: this.isLoggedIn,
         text: this.currentUser,
         href: '',
