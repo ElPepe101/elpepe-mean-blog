@@ -1,6 +1,7 @@
 /* eslint-env mocha */
 
 import {expect} from 'chai'
+// import request from 'supertest'
 
 import angular from 'angular'
 import 'angular-mocks'
@@ -10,21 +11,28 @@ import AuthService from 'AuthService.service'
 describe('Auth service', function () {
   var Auth
 
-  var mock = angular.mock
+  // var url = 'http://localhost:7000'
+
   var $q
+  var $http
   var $window
   var $httpBackend
 
-  beforeEach(mock.inject(function (_$httpBackend_, _$q_, _$window_) {
-    $q = _$q_
-    $window = _$window_
-    $httpBackend = _$httpBackend_
+  beforeEach(angular.mock.inject(function ($injector) {
+    $q = $injector.get('$q')
+    $http = $injector.get('$http')
+    $window = $injector.get('$window')
+    $httpBackend = $injector.get('$httpBackend')
 
-    Auth = new AuthService($httpBackend, $q, $window)
+    // $httpBackend.whenPOST('/login').passThrough()
+
+    Auth = new AuthService($http, $q, $window)
   }))
 
+  // this one helped to uncover the mock injection.
+  // Now I got it, but I want to keep it as a reminder
   it('should start with an implentation of $http, $q and $window', function () {
-    expect(Auth.$http).to.be.equal($httpBackend).and.not.to.be.undefined
+    expect(Auth.$http).to.be.equal($http).and.not.to.be.undefined
     expect(Auth.$q).to.be.equal($q).and.not.to.be.undefined
     expect(Auth.$window).to.be.equal($window).and.not.to.be.undefined
   })
@@ -39,24 +47,26 @@ describe('Auth service', function () {
     expect(Auth.getToken()).to.be.undefined
   })
 
+  /*
   describe('Login process', function () {
-    var mockUser = {
-      username: '',
-      password: ''
-    }
+    it('should get an error message if the username or password is incorrect', function (done) {
+      Auth.logIn({
+        username: '',
+        password: ''
+      })
 
-    /* it('should send an object', function () {
-      var uri = '/login'
-      $httpBackend.expectPOST(uri, mockUser).respond(201, {})
-    })*/
-
-    it('should get an error message if the username or password is incorrect', function () {
-      var uri = '/login'
-      $httpBackend.expectPOST(uri, mockUser).respond(200, {})
+      expect(Auth.error).to.equals('Please fill out all fields.')
     })
 
-    /* it('should retrieve a token on succesful log in', function () {
-      Auth.login(mockUser)
-    })*/
+    it('should retrieve a token on succesful log in', function () {
+      Auth.logIn({
+        username: '',
+        password: ''
+      })
+
+      expect(Auth.error).to.equals('')
+      expect(Auth.getToken()).to.equal(window.localStorage[Auth.storage]).and.to.be.a('string')
+    })
   })
+  */
 })

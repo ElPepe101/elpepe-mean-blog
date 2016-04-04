@@ -12,15 +12,15 @@
         <td colspan="3" title="Mozilla/5.0 (Macintosh; Intel Mac OS X) AppleWebKit/538.1 (KHTML, like Gecko) PhantomJS/2.1.1 Safari/538.1">Browser: PhantomJS 2.1.1 (Mac OS X 0.0.0)</td>
       </tr>
       <tr class="overview">
-        <td colspan="3">Timestamp: 3/30/2016, 12:59:18 AM</td>
+        <td colspan="3">Timestamp: 4/4/2016, 3:18:50 PM</td>
       </tr>
       <tr>
         <td colspan="3">
-          3 tests / 
+          5 tests / 
           0 errors / 
-          0 failures / 
+          2 failures / 
           0 skipped / 
-          runtime: 0.001s
+          runtime: 0.004s
         </td>
       </tr>
       <tr class="header">
@@ -34,7 +34,7 @@
         <td>Auth service</td>
       </tr>
       <tr class="pass">
-        <td>Passed in 0s</td>
+        <td>Passed in 0.001s</td>
         <td>should store a string on localStorage after call saveToken</td>
         <td>Auth service</td>
       </tr>
@@ -42,6 +42,24 @@
         <td>Passed in 0s</td>
         <td>should remove a string on localStorage after call logOut</td>
         <td>Auth service</td>
+      </tr>
+      <tr class="fail">
+        <td>Failed</td>
+        <td>should get an error message if the username or password is incorrect</td>
+        <td>
+          Auth service &raquo; Login process
+          <br />expected undefined to equal 'Please fill out all fields.'
+
+        </td>
+      </tr>
+      <tr class="fail">
+        <td>Failed</td>
+        <td>should retrieve a token on succesful log in</td>
+        <td>
+          Auth service &raquo; Login process
+          <br />expected undefined to equal ''
+
+        </td>
       </tr>
     </table>
     <hr/>
